@@ -10,7 +10,7 @@ jobs:
          echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_USERNAME --password-stdin
 
      # build the application image
-     - run: docker build -t $DOCKER_HUB_USERNAME/$IMAGE_NAME .
+     - run: docker build -t $DOCKER_HUB_USERNAME/$IMAGE_NAME:latest .
 
      # deploy the image
-     - run: docker push $DOCKER_USERNAME/$IMAGE_NAME
+     - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:latest
