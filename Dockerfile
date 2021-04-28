@@ -5,6 +5,7 @@ ENV USERNAME=
 ENV PASSWORD=
 ENV DB_NAME=
 ENV DB_PORT=
+ENV DB_HOST=
 ARG DEBIAN_FRONTEND=noninteractive
 ARG KIMAI="1.14"
 
@@ -46,6 +47,7 @@ RUN sed 's/USERNAME/${USERNAME}/' /var/www/kimai2/.env
 RUN sed 's/PASSWORD/${PASSWORD}/' /var/www/kimai2/.env
 RUN sed 's/DB_NAME/${DB_NAME}/' /var/www/kimai2/.env
 RUN sed 's/DB_PORT/${DB_PORT}/' /var/www/kimai2/.env
+RUN sed 's/HOST/${DB_HOST}/' /var/www/kimai2/.env
 COPY local.yaml /var/www/kimai2/config/packages/local.yaml
 RUN chown www-data:www-data /var/www/kimai2/.env
 RUN chown www-data:www-data /var/www/kimai2/config/packages/local.yaml
