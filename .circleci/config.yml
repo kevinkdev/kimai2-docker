@@ -1,10 +1,16 @@
-version: 2.1
+version: 2
 jobs:
-  build:
-    steps:
-      - setup_remote_docker:
-          version: 19.03.13
-          docker_layer_caching: true
-      - run: docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
-      - run: docker build -t $DOCKER_HUB_USERNAME/$IMAGE_NAME .
-      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME
+ build:
+   machine: true
+   steps:
+     - checkout
+     # start proprietary DB using private Docker image
+     # with credentials stored in the UI
+     - run: |
+         echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_USERNAME --password-stdin
+
+     # build the application image
+     - run: docker build -t $DOCKER_HUB_USERNAME/$IMAGE_NAME .
+
+     # deploy the image
+     - run: docker push $DOCKER_USERNAME/$IMAGE_NAME
