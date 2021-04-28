@@ -1,6 +1,5 @@
 FROM php:7.4-apache
 MAINTAINER Kevin Kamani <kevinkdev97@gmail.com>
-ENV DATABASE_URL=
 ENV USERNAME=
 ENV PASSWORD=
 ENV DB_NAME=
@@ -43,6 +42,7 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 
 COPY .env /var/www/kimai2/.env
+COPY kimai.conf /etc/apache2/sites-available/kimai.conf
 RUN sed 's/USERNAME/${USERNAME}/' /var/www/kimai2/.env
 RUN sed 's/PASSWORD/${PASSWORD}/' /var/www/kimai2/.env
 RUN sed 's/DB_NAME/${DB_NAME}/' /var/www/kimai2/.env
