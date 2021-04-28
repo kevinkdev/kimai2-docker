@@ -13,6 +13,7 @@ RUN apt-get update && \
   && docker-php-ext-install zip \
   && docker-php-ext-install pdo \
   && docker-php-ext-install pdo_mysql \
+  && docker-php-ext-install xsl \
   && rm -rf /var/lib/apt/lists/* \
   && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
   && php composer-setup.php --quiet \
