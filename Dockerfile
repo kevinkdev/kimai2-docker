@@ -43,7 +43,7 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 COPY .env /var/www/kimai2/.env
 COPY kimai.conf /etc/apache2/sites-enabled/kimai.conf
-RUN rm /etc/apache2/sites-enabled/000-default
+RUN rm /etc/apache2/sites-enabled/000-default.conf
 RUN sed 's/USERNAME/${USERNAME}/' /var/www/kimai2/.env
 RUN sed 's/PASSWORD/${PASSWORD}/' /var/www/kimai2/.env
 RUN sed 's/DB_NAME/${DB_NAME}/' /var/www/kimai2/.env
