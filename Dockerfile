@@ -7,7 +7,7 @@ ARG KIMAI="1.14"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends unzip git zip \
-    libpng-dev libicu-dev libzip-dev sudo \
+    libpng-dev libicu-dev libzip-dev libxslt-dev sudo \
   && docker-php-ext-install intl \
   && docker-php-ext-install gd \
   && docker-php-ext-install zip \
