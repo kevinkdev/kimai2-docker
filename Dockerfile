@@ -1,6 +1,10 @@
 FROM php:7.4-apache
 MAINTAINER Kevin Kamani <kevinkdev97@gmail.com>
 ENV DATABASE_URL=
+ENV USERNAME=
+ENV PASSWORD=
+ENV DB_NAME=
+ENV DB_PORT=
 ARG DEBIAN_FRONTEND=noninteractive
 ARG KIMAI="1.14"
 
@@ -36,7 +40,12 @@ ENV APACHE_DOCUMENT_ROOT /var/www/kimai2/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
+
 COPY .env /var/www/kimai2/.env
+RUN sed 's/USERNAME/${USERNAME}/' /var/www/kimai2/.env
+RUN sed 's/PASSWORD/${PASSWORD}/' /var/www/kimai2/.env
+RUN sed 's/DB_NAME/${DB_NAME}/' /var/www/kimai2/.env
+RUN sed 's/DB_PORT/${DB_PORT}/' /var/www/kimai2/.env
 COPY local.yaml /var/www/kimai2/config/packages/local.yaml
 RUN chown www-data:www-data /var/www/kimai2/.env
 RUN chown www-data:www-data /var/www/kimai2/config/packages/local.yaml
