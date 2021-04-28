@@ -50,7 +50,7 @@ COPY local.yaml /var/www/kimai2/config/packages/local.yaml
 RUN chown www-data:www-data /var/www/kimai2/.env
 RUN chown www-data:www-data /var/www/kimai2/config/packages/local.yaml
 
-COPY entrypoint.sh /
+COPY startup.sh /
 
 RUN chmod 755 /startup.sh
 
