@@ -35,14 +35,15 @@ RUN apt-get update && \
   && cd /usr/local/etc/php \
   && ln -s php.ini-production php.ini
 
-ENV APACHE_DOCUMENT_ROOT /var/www/kimai2/public
+ENV APACHE_DOCUMENT_ROOT = /var/www/kimai2/public
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 
 COPY .env /var/www/kimai2/.env
-COPY kimai.conf /etc/apache2/sites-available/kimai.conf
+COPY kimai.conf /etc/apache2/sites-enabled/kimai.conf
+RUN rm /etc/apache2/sites-enabled/000-default
 RUN sed 's/USERNAME/${USERNAME}/' /var/www/kimai2/.env
 RUN sed 's/PASSWORD/${PASSWORD}/' /var/www/kimai2/.env
 RUN sed 's/DB_NAME/${DB_NAME}/' /var/www/kimai2/.env
