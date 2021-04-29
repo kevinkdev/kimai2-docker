@@ -1,5 +1,5 @@
 FROM php:7.4-apache
-MAINTAINER Kevin Kamani <kevinkdev97@gmail.com>
+LABEL maintainer="Kevin Kamani <kevinkdev97@gmail.com>"
 ENV USERNAME=
 ENV PASSWORD=
 ENV DB_NAME=
