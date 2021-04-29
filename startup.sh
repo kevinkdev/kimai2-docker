@@ -14,4 +14,4 @@ chown -R :www-data .
 chmod -R g+r .
 chmod -R g+rw var/
 chmod -R g+rw public/avatars/
-apache2-foreground
+apachectl-foreground
