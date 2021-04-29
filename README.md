@@ -15,6 +15,7 @@ docker run -d \
   -e USERNAME=YOUR_DB_ACCOUNT_USERNAME \
   -e PASSWORD=YOUR_DB_ACCOUNT_PASSWORD \
   -e DB_NAME=YOUR_DB_TABLE_NAME \
+  -e DB_HOST=YOUR_DB_TABLE_NAME \
   -e DB_PORT=YOUR_DB_PORT \
   -p 80:80 \
   --restart unless-stopped \
