@@ -8,14 +8,6 @@ ENV DB_HOST=
 ARG DEBIAN_FRONTEND=noninteractive
 ARG KIMAI="1.14"
 
-COPY .env /var/www/kimai2/.env
-COPY kimai.conf /etc/apache2/sites-enabled/kimai.conf
-COPY beforeInstall.sh /
-RUN chmod 755 /beforeInstall.sh
-CMD ["bash","/beforeInstall.sh"]
-
-COPY local.yaml /var/www/kimai2/config/packages/local.yaml
-
 RUN apt-get update && \
     apt-get install -y --no-install-recommends unzip git zip \
     libpng-dev libicu-dev libzip-dev libxslt-dev sudo \
@@ -42,6 +34,13 @@ RUN apt-get update && \
   && cd /usr/local/etc/php \
   && ln -s php.ini-production php.ini
 
+COPY .env /var/www/kimai2/.env
+COPY kimai.conf /etc/apache2/sites-enabled/kimai.conf
+COPY beforeInstall.sh /
+RUN chmod 755 /beforeInstall.sh
+CMD ["bash","/beforeInstall.sh"]
+
+COPY local.yaml /var/www/kimai2/config/packages/local.yaml
 RUN chown www-data:www-data /var/www/kimai2/.env
 RUN chown www-data:www-data /var/www/kimai2/config/packages/local.yaml
 
