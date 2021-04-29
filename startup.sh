@@ -7,6 +7,5 @@ sed -i "s/%PASSWORD%/$PASSWORD/" .env
 sed -i "s/%DB_NAME%/$DB_NAME/" .env
 sed -i "s/%DB_PORT%/$DB_PORT/" .env
 sed -i "s/%DB_HOST%/$DB_HOST/" .env
-echo "Loading Kimai..."
 bin/console kimai:install -n
 apachectl-foreground
